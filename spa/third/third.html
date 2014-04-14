@@ -1,0 +1,53 @@
+<div class="third">
+    <div class="jumbotron">
+        <h1>Third page</h1>
+        <p>
+
+            <label>Content: </label>
+            <span> {{content}}</span>
+        </p>
+        <p>
+            <label>Parameter: </label>
+            <span>{{paramId}}</span>
+        </p>
+
+        <pre class="prettyprint"> 
+            
+            angular.module('SpaApp')
+
+            .config(function($routeProvider) {
+                $routeProvider.
+                when('/first', {
+                    templateUrl: 'first/first.html',
+                    controller: 'FirstCtrl'
+                }).
+                when('/second', {
+                    templateUrl: 'second/second.html',
+                    controller: 'SecondCtrl'
+                }).
+                when('/third/:id?', {
+                    templateUrl: 'third/third.html',
+                    controller: 'ThirdCtrl'
+                }).
+                otherwise({
+                    redirectTo: '/first'
+                });
+            })
+
+
+            .controller('ThirdCtrl', function($scope, $routeParams) {
+                $scope.paramId = $routeParams.id || 'no param';
+                $scope.content = 'ThirdCtrl scope content variable';
+            });
+
+        </pre>
+            
+        <pre class="prettyprint"> 
+            &lt;p&gt;
+                &lt;label &gt;Parameter: &lt;/label&gt;
+                &lt;span&gt;<code ng-non-bindable>{{paramId}}</code>&lt;/span&gt;
+            &lt;/p&gt;
+        </pre>
+    </div>
+
+</div>

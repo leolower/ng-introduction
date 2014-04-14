@@ -1,0 +1,22 @@
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="TopNavCtrl">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Intro a AngularJS</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active: isActive('users')}"><a href="../users">Users App</a></li>
+                <li ng-class="{active: isActive('spa')}"><a href="../spa">Single Page Application</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+            </form>
+        </div>
+    </div>
+</div>

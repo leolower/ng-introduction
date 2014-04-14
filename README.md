@@ -1,4 +1,3 @@
 ng-introduction
 ===============
-
-ng-introduction
+Introducción a AngularJS

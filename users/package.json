@@ -1,0 +1,17 @@
+{
+  "author": "Leonardo Lower",
+  "name": "ng-introduction",
+  "version": "0.0.1",
+  "licenses": {
+    "type": "MIT"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "~0.10.2",
+    "bower": "latest",
+    "http-server": "latest",
+    "karma-cli": "latest",
+    "karma-jasmine": "latest",
+    "karma-chrome-launcher": "latest"
+  }
+}

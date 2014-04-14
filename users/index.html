@@ -1,0 +1,92 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro a AngularJS</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Prettify -->
+    <link href="../common/prettify.css" rel="stylesheet">
+    <script src="../common/prettify.js"></script>
+
+    <!-- Angular -->
+    <script src="../common/angular.js"></script>
+    <script src="../common/angular-resource.min.js"></script>
+
+    <!-- App -->
+    <link href="../common/app.css" rel="stylesheet">
+    <script src="users-app.js"></script>
+</head>
+
+<!-- App bootstrap -->
+<body ng-app="UserListApp">
+
+    <!-- Included partial template -->
+    <div ng-include="'../common/top-nav.html'"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 main">
+
+                <div ng-controller="TableCtrl">
+
+                    <h2 class="sub-header">
+                        Users 
+                        <span class="label label-primary" ng-if="users.length">{{users.length}} items</span>
+                        <span class="label label-default" ng-if="tableOptions.filter">Filter: {{tableOptions.filter}}</span>
+                        <button class="btn btn-primary pull-right" ng-click="addUsers()">
+                            <span class="glyphicon glyphicon-plus"></span> Add 1K users
+                        </button> 
+                    </h2>
+
+                    <div ng-include="'controls.html'"></div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th ng-click="orderBy('id')">Id</th>
+                                    <th ng-click="orderBy('balance')">Balance</th>
+                                    <th ng-click="orderBy('name')">Name</th>
+                                    <!-- <th ng-click="orderBy('gender')">Gender</th> -->
+                                    <!-- <th ng-click="orderBy('company')">Company</th> -->
+                                    <th ng-click="orderBy('email')">Email</th>
+                                    <th ng-click="orderBy('phone')">Phone</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="user in users | filter:tableOptions.filter | orderBy:tableOptions.order.col:tableOptions.order.reverse | startFrom:(currentPage-1)*pageSize | limitTo:pageSize ">
+                                    <td >{{user.id}}</td>
+                                    <td>{{user.balance}}</td>
+                                    <td>{{user.name}}</td>
+                                    <!-- <td>{{user.gender}}</td> -->
+                                    <!-- <td>{{user.company}}</td> -->
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.phone}}</td>
+                                    <td class="text-center">
+                                        <a href="" ng-click="deleteUser(user)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination directive -->
+                        <pagination></pagination>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
