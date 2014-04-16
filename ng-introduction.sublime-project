@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"users/node_modules"
+			],
+			"follow_symlinks": true,
+			"path": "."
+		}
+	]
+}

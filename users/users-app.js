@@ -1,5 +1,9 @@
 angular.module('UserListApp', ['ngResource'])
 
+/////////////////
+// CONTROLLERS //
+/////////////////
+
 /**
  * Main table controller
  */
@@ -31,7 +35,7 @@ angular.module('UserListApp', ['ngResource'])
     $scope.addUsersHttp = function() {
         $http({
             method: 'GET',
-            url: 'users.json'
+            url: 'api/users.json'
         }).
         success(function(data, status, headers, config) {
             $scope.users = $scope.users.concat(data);
@@ -97,11 +101,34 @@ angular.module('UserListApp', ['ngResource'])
     });
 })
 
+
+/**
+ * Top navigation
+ */
+.controller('TopNavCtrl',
+    function($scope, $location) {
+        $scope.isActive = function(path) {
+            if ($location.absUrl().match(path)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+    }
+);
+
+
+//////////////
+// SERVICES //
+//////////////
+
+angular.module('UserListApp')
+
 /**
  * Manages the Users
  */
 .factory('UserResource', function($resource) {
-    var resource = $resource('users.json');
+    var resource = $resource('api/users.json');
 
     /**
      * Removes the current user fron the collection
@@ -148,7 +175,12 @@ angular.module('UserListApp', ['ngResource'])
 
 
     return resource;
-})
+});
+
+/////////////
+// FILTERS //
+/////////////
+angular.module('UserListApp')
 
 /**
  * Filter used for magination
@@ -158,7 +190,13 @@ angular.module('UserListApp', ['ngResource'])
         start = +start; //parse to int
         return input.slice(start);
     }
-})
+});
+
+
+////////////////
+// DIRECTIVES //
+////////////////
+angular.module('UserListApp')
 
 /**
  * Table pagination
@@ -166,7 +204,7 @@ angular.module('UserListApp', ['ngResource'])
 .directive('pagination', function() {
     return {
         restrict: 'E',
-        templateUrl: 'pagination.html',
+        templateUrl: 'partials/pagination.html',
         controller: function($scope) {
             $scope.pageSize = 50;
             $scope.currentPage = 1;
@@ -204,19 +242,4 @@ angular.module('UserListApp', ['ngResource'])
             }
         };
     }
-])
-
-/**
- * Top navigation
- */
-.controller('TopNavCtrl',
-    function($scope, $location) {
-        $scope.isActive = function(path) {
-            if ($location.absUrl().match(path)) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-    }
-)
+]);

@@ -14,7 +14,8 @@ module.exports = function(config) {
         files: [
             '../common/angular.js',
             '../common/*.js',
-            '*.js'
+            '*.js',
+            'tests/*.spec.js'
         ],
 
         exclude: [

@@ -45,7 +45,7 @@
                         </button> 
                     </h2>
 
-                    <div ng-include="'controls.html'"></div>
+                    <div ng-include="'partials/controls.html'"></div>
 
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -55,21 +55,21 @@
                                     <th ng-click="orderBy('balance')">Balance</th>
                                     <th ng-click="orderBy('name')">Name</th>
                                     <!-- <th ng-click="orderBy('gender')">Gender</th> -->
-                                    <!-- <th ng-click="orderBy('company')">Company</th> -->
                                     <th ng-click="orderBy('email')">Email</th>
                                     <th ng-click="orderBy('phone')">Phone</th>
+                                    <th ng-click="orderBy('registered')">Registered</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="user in users | filter:tableOptions.filter | orderBy:tableOptions.order.col:tableOptions.order.reverse | startFrom:(currentPage-1)*pageSize | limitTo:pageSize ">
                                     <td >{{user.id}}</td>
-                                    <td>{{user.balance}}</td>
+                                    <td>{{user.balance | currency}}</td>
                                     <td>{{user.name}}</td>
                                     <!-- <td>{{user.gender}}</td> -->
-                                    <!-- <td>{{user.company}}</td> -->
                                     <td>{{user.email}}</td>
                                     <td>{{user.phone}}</td>
+                                    <td>{{user.registered | date:'yyyy-MM-dd'}}</td>
                                     <td class="text-center">
                                         <a href="" ng-click="deleteUser(user)">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -81,6 +81,8 @@
 
                         <!-- Pagination directive -->
                         <pagination></pagination>
+                        <div pagination="user"></div>
+                        <div class="pagination"></div>
 
                     </div>
                 </div>
